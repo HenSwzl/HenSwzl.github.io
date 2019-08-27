@@ -369,7 +369,7 @@ h1, h2, h3, h4, h5, h6,
   color: inherit; }
 
 h1, .h1 {
-  font-size: 2.5rem; }
+  font-size: 2.0rem; }
 
 h2, .h2 {
   font-size: 2rem; }
@@ -6431,7 +6431,7 @@ Header
 **/
 header h1 {
   color: #507dbc;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.4rem;
   letter-spacing: -0.2rem; }
 
@@ -6463,7 +6463,7 @@ Navbar
   color: #f8f8f8;
   font-weight: bold;
   padding: 1rem 2rem !important;
-  font-size: 1.2rem; }
+  font-size: 1rem; }
 
 .navbar-nav .dropdown-item:hover,
 .navbar-nav .dropdown-item:focus,
@@ -6532,10 +6532,10 @@ article {
   margin-bottom: 2rem;
   border-bottom: 1px solid #dee2e6;
   padding-bottom: 2rem;
-  font-size: 1.2rem; }
+  font-size: 1.0rem; }
 
 article h2.article-title {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 0;
   letter-spacing: -2px; }
 
