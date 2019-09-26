@@ -12,6 +12,7 @@
 
         <!-- Font Awesome -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/a11y-dark.min.css" rel="stylesheet">
     </head>
   
     <body>
@@ -60,10 +61,10 @@
                         </li>
 
                         <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">layui</a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">笔记</a>
                             <div class="dropdown-menu navbar-dark bg-primary">
                                 <a class="dropdown-item" href="add-tab.html">add tab</a>
-                                <a class="dropdown-item" href="three-column.html">Three Column</a>
+                                <a class="dropdown-item" href="three-column.html">websocket</a>
                                 <a class="dropdown-item" href="one-column.html">One column / no sidebar</a>
                                 <a class="dropdown-item"  href="text.html">Text / left sidebar</a>
                             </div>
@@ -86,159 +87,128 @@
             </div>
         </nav>
 
+        <div class="jumbotron-wrap">
+            <div class="container">
+                <div class="jumbotron jumbotron-narrow">
+                    <h1 class="text-center">php websocket推送消息给前端</h1>
+                </div>
+            </div>
+        </div>
+
         <!-- Main content area -->
         <main class="container">
             <div class="row">
-                
-                <!-- Left sidebar -->
-                 <aside class="col-sm-3">
-                    <div class="sidebar-box">
-                        <h4>Categories</h4>
-                        <div class="list-group list-group-root">
-                            <a class="list-group-item" href="index.html">Home Page</a>
-                            <a class="list-group-item" href="examples.html">Style Examples</a>
-                            <div class="list-group">
-                                <a class="list-group-item active" href="three-column.html">Three Column</a>
-                                <a class="list-group-item" href="one-column.html">One column / no sidebar</a>
-                                <a class="list-group-item" href="text.html">Text / left sidebar</a>	
-                            </div>
-                            <a class="list-group-item" href="three-column.html">Three column layout example</a>
-                            <a class="list-group-item" href="#">Sed aliquam libero ut velit bibendum</a>
-                            <a class="list-group-item" href="#">Maecenas condimentum velit vitae</a>
-                        </div>
-                    </div>
 
-                    <div class="sidebar-box sidebar-box-bg">
-                        <h4>About us</h4>
-                        <p>Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu pretium luctus. <a href="#" class="readmore">Read More &raquo;</a></p>    
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h4>Search site</h4>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="text"  placeholder="Search" aria-label="Search">
-                            <button class="btn my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h4>Helpful Links</h4>
-                        <ul>
-                            <li><a href="#" title="premium templates">Premium HTML web templates from $10</a></li>
-                            <li><a href="#" title="web hosting">Cheap web hosting from Dreamhost</a></li>
-                            <li><a href="#" title="Tux Themes">Premium WordPress themes</a></li>
-                        </ul>
-                    </div>
-                </aside> 
-                
                 <!-- Main content -->
-                <div class="col-sm-6">
-                    <article>
-                        <h2 class="article-title">Introduction to wintry</h2>
+                <div class="col-sm-12" id="content">
+                    客户端文件
+                        <h3>WebSocket协议的客户端程序</h3>
+                        <button id="btConnect">连接到WS服务器</button>
+                        <button id="btSendAndReceive">向WS服务器发消息并接收消息</button>
+                        <button id="btClose">断开与WS服务器的连接</button>
+                        <div id="val"></div>
+                        <script>
+                            var wsClient = null; //WS客户端对象
 
-                        <p class="article-meta">Posted on <time datetime="2017-05-14">14 May</time> by <a href="#" rel="author">Joe Bloggs</a></p>
+                            btConnect.onclick = function(){
+                                //连接到WS服务器，注意：协议名不是http！
+                                wsClient = new WebSocket('ws://127.0.0.1:9999');
+                                wsClient.onopen = function(){
+                                    console.log('WS客户端已经成功连接到服务器上')
+                                }
+                            }
 
-                        <p>Welcome to wintry, a free CSS3 &amp; HTML5 responsive web template from <a href="#" title="ZyPOP">ZyPOP</a>. This template is completely <strong>free</strong> to use permitting a link remains back to  <a href="#" title="ZyPOP">zyPop</a>.</p>
-
-                        <p> Should you wish to use this template unbranded you can buy a template license from our website for 8.00 GBP, this will allow you remove all branding related to our site, for more information about this see below.</p>	
-
-                        <p>This template has been tested in:</p>
-
-                        <ul>
-                            <li>Firefox</li>
-                            <li>IE / Edge</li>
-                            <li>Chrome</li>
-                            <li>Safari</li>
-                            <li>iOS / Android</li>
-                        </ul>
-
-                        <a href="#" class="btn btn-primary">Read more</a>
-                        <a href="#" class="btn btn-secondary">Comments</a>
-
-                    </article>
-
-                    <article>
-
-                        <h2 class="article-title">Buy unbranded</h2>
-                        <p class="article-meta">Posted on <time datetime="2017-05-14">14 May</time> by <a href="#" rel="author">Joe Bloggs</a></p>
-
-                        <p>Purchasing a template license for 8.00 GBP (at time of writing around 10 USD) gives you the right to remove any branding including links, logos and source tags relating to ZyPOP. As well as waiving the attribution requirement, your payment will also help us provide continued support for users as well as creating new web templates. Find out more about how to buy at the licensing page on our website which can be accessed at <a href="#licensing" title="template license">#licensing</a></p>
-
-                        <h3>Lorem lipsum</h3>
-
-                        <p>Morbi fermentum condimentum felis, commodo vestibulum sem mattis sed. Aliquam magna ante, mollis vitae tincidunt in, malesuada vitae turpis. Sed aliquam libero ut velit bibendum consectetur. Quisque sagittis, est in laoreet semper, enim dui consequat felis, faucibus ornare urna velit nec leo. Maecenas condimentum velit vitae est lobortis fermentum. In tristique sem vitae metus ornare luctus tempus nisl volutpat. Integer et est id nisi tempus pharetra sagittis et libero.</p>
-
-                        <a href="#" class="btn btn-primary">Read more</a>
-                        <a href="#" class="btn btn-secondary">Comments</a>
-                    </article>
+                            btSendAndReceive.onclick = function(){
+                                //向WS服务器发送一个消息
+                                wsClient.send('Hello Server');
+                                //接收WS服务器返回的消息
+                                wsClient.onmessage = function(e){
+                                    console.log('WS客户端接收到一个服务器的消息：'+ e.data);
+                                    val.innerHTML=e.data;
+                                }
 
 
-                    <!-- Example pagination Bootstrap component -->
-                    <nav>
-                        <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                        </ul>
-                    </nav>
+                            }
+
+                            btClose.onclick = function(){
+                                //断开到WS服务器的连接
+                                wsClient.close();  //向服务器发消息，主动断开连接
+                                wsClient.onclose = function(){
+                                    //经过客户端和服务器的四次挥手后，二者的连接断开了
+                                    console.log('到服务器的连接已经断开')
+                                }
+                            }
+                        </script>
+
+                    php 服务端文件
+                        $address = "127.0.0.1";
+                        $port = 9999; //调试的时候，可以多换端口来测试程序！
+
+                        set_time_limit(0);
+                        $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+                        socket_set_block($sock);
+                        socket_bind($sock, $address, $port);
+                        socket_listen($sock, 4);
+
+                        do
+                        {
+                            echo "Waiting for Connection...\n";
+                            $msgsock = socket_accept($sock);
+                            echo "Waiting for Request...\n";
+                            $buf = socket_read($msgsock, 8192);     //读取请求
+                            echo "Request Received: $buf\n";
+                            $response = hand_shake($buf);
+                            socket_write($msgsock,$response,strlen($response)); //发送响应
+
+                            //正式开始通信...
+                            $buf = socket_read($msgsock, 8192);
+
+                            for($i=0; $i<3; $i++){
+                                $msg = "WELCOME $i\n";
+                                $msg = code($msg);
+                                sleep(1);
+                                socket_write($msgsock, $msg, strlen($msg));
+                            }
+
+                            socket_close($msgsock);
+                        } while (true);
+                        socket_close($sock);
+
+                        function hand_shake($buf){
+                            $buf  = substr($buf,strpos($buf,'Sec-WebSocket-Key:')+18);
+                            $key  = trim(substr($buf,0,strpos($buf,"\r\n")));
+
+                            $new_key = base64_encode(sha1($key."258EAFA5-E914-47DA-95CA-C5AB0DC85B11",true));
+
+                            $new_message = "HTTP/1.1 101 Switching Protocols\r\n";
+                            $new_message .= "Upgrade: websocket\r\n";
+                            $new_message .= "Sec-WebSocket-Version: 13\r\n";
+                            $new_message .= "Connection: Upgrade\r\n";
+                            $new_message .= "Sec-WebSocket-Accept: " . $new_key . "\r\n\r\n";
+                            return $new_message;
+                        }
+                        function code($msg){
+                            $msg = preg_replace(array('/\r$/','/\n$/','/\r\n$/',), '', $msg);
+                            $frame = array();
+                            $frame[0] = '81';
+                            $len = strlen($msg);
+                            $frame[1] = $len<16?'0'.dechex($len):dechex($len);
+                            $frame[2] = ord_hex($msg);
+                            $data = implode('',$frame);
+                            return pack("H*", $data);
+                        }
+                        function ord_hex($data)  {
+                            $msg = '';
+                            $l = strlen($data);
+                            for ($i= 0; $i<$l; $i++) {
+                                $msg .= dechex(ord($data{$i}));
+                            }
+                            return $msg;
+                        }
+
                 </div>
 
-                
-                <!-- Right Sidebar -->
-                <aside class="col-sm-3">
-                    <div class="sidebar-box">
-                        <h4>Categories</h4>
-                        <div class="list-group list-group-root">
-                            <a class="list-group-item" href="index.html">Home Page</a>
-                            <a class="list-group-item" href="examples.html">Style Examples</a>
-                            <div class="list-group">
-                                <a class="list-group-item active" href="three-column.html">Three Column</a>
-                                <a class="list-group-item" href="one-column.html">One column / no sidebar</a>
-                                <a class="list-group-item" href="text.html">Text / left sidebar</a>	
-                            </div>
-                            <a class="list-group-item" href="three-column.html">Three column layout example</a>
-                            <a class="list-group-item" href="#">Sed aliquam libero ut velit bibendum</a>
-                            <a class="list-group-item" href="#">Maecenas condimentum velit vitae</a>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-box sidebar-box-bg">
-                        <h4>About us</h4>
-                        <p>Aenean nec massa a tortor auctor sodales sed a dolor. Duis vitae lorem sem. Proin at velit vel arcu pretium luctus. <a href="#" class="readmore">Read More &raquo;</a></p>    
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h4>Search site</h4>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="text"  placeholder="Search" aria-label="Search">
-                            <button class="btn my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
-
-                    <div class="sidebar-box">
-                        <h4>Helpful Links</h4>
-                        <ul>
-                            <li><a href="#" title="premium templates">Premium HTML web templates from $10</a></li>
-                            <li><a href="#" title="web hosting">Cheap web hosting from Dreamhost</a></li>
-                            <li><a href="#" title="Tux Themes">Premium WordPress themes</a></li>
-                        </ul>
-                    </div>
-                </aside> 
-                
-                
-            </div> 
+            </div>
         </main>
 
 
@@ -309,4 +279,39 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
     </body>
+
+    <script src="https://cdn.bootcss.com/marked/0.7.0/marked.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script>
+
+        var rendererMD = new marked.Renderer();
+        marked.setOptions({
+            renderer: rendererMD,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false,
+            highlight: function (code) {
+                return hljs.highlightAuto(code).value;
+            }
+        });//基本设置
+
+        let content = document.getElementById('content');
+        let markdown = content.innerHTML;
+        let newMarkdown = HTMLDecode(markdown);
+        let html = marked(newMarkdown);
+        content.innerHTML = html;
+
+        //特殊字符在获取 innerHTML 时，会被转换为转义字符，影响 Markdown 内容转换，此处反转回来。 &gt对应 >
+        function HTMLDecode(text) {
+            return text.replace(/&gt;/g, '>')
+        }
+
+    </script>
 </html>
